@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PASTANEİSLETMECİLİĞİModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ALINANMALLAR">
+    <Key>
+      <PropertyRef Name="Alinanmal_id" />
+    </Key>
+    <Property Name="Alinanmal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Alinanmal_Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Alinanmal_Mik" Type="Int32" />
+    <Property Name="Alinanmal_Tarih" Type="DateTime" Precision="0" />
+    <Property Name="Alinanmal_SKT" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="STOKLAR" Relationship="Self.FK_STOKLAR_ToTable_1" FromRole="ALINANMALLAR" ToRole="STOKLAR" />
+  </EntityType>
+  <EntityType Name="CALISANLAR">
+    <Key>
+      <PropertyRef Name="Calisan_id" />
+    </Key>
+    <Property Name="Calisan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Calisan_Ad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Calisan_Soyad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Calisan_Cep_Tel" Type="String" MaxLength="11" FixedLength="false" Unicode="true" />
+    <Property Name="Calisan_Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SIPARISLER" Relationship="Self.FK_SIPARISLER_ToTable_2" FromRole="CALISANLAR" ToRole="SIPARISLER" />
+  </EntityType>
+  <EntityType Name="MASALAR">
+    <Key>
+      <PropertyRef Name="Masa_id" />
+    </Key>
+    <Property Name="Masa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Masa_Ad" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SIPARISLER" Relationship="Self.FK_SIPARISLER_ToTable_1" FromRole="MASALAR" ToRole="SIPARISLER" />
+  </EntityType>
+  <EntityType Name="SIPARISLER">
+    <Key>
+      <PropertyRef Name="Siparis_id" />
+    </Key>
+    <Property Name="Siparis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Siparis_ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Siparis_Tarih" Type="DateTime" Precision="3" />
+    <Property Name="Urün_id" Type="Int32" />
+    <Property Name="Masa_id" Type="Int32" />
+    <Property Name="Calisan_id" Type="Int32" />
+    <NavigationProperty Name="CALISANLAR" Relationship="Self.FK_SIPARISLER_ToTable_2" FromRole="SIPARISLER" ToRole="CALISANLAR" />
+    <NavigationProperty Name="MASALAR" Relationship="Self.FK_SIPARISLER_ToTable_1" FromRole="SIPARISLER" ToRole="MASALAR" />
+    <NavigationProperty Name="URUNLER" Relationship="Self.FK_SIPARISLER_ToTable" FromRole="SIPARISLER" ToRole="URUNLER" />
+  </EntityType>
+  <EntityType Name="STOKLAR">
+    <Key>
+      <PropertyRef Name="Stok_id" />
+    </Key>
+    <Property Name="Stok_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Urün_id" Type="Int32" />
+    <Property Name="Alinanmal_id" Type="Int32" />
+    <NavigationProperty Name="ALINANMALLAR" Relationship="Self.FK_STOKLAR_ToTable_1" FromRole="STOKLAR" ToRole="ALINANMALLAR" />
+    <NavigationProperty Name="URUNLER" Relationship="Self.FK_STOKLAR_ToTable" FromRole="STOKLAR" ToRole="URUNLER" />
+  </EntityType>
+  <EntityType Name="URUNLER">
+    <Key>
+      <PropertyRef Name="Urün_id" />
+    </Key>
+    <Property Name="Urün_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Urun_Ad" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SIPARISLER" Relationship="Self.FK_SIPARISLER_ToTable" FromRole="URUNLER" ToRole="SIPARISLER" />
+    <NavigationProperty Name="STOKLAR" Relationship="Self.FK_STOKLAR_ToTable" FromRole="URUNLER" ToRole="STOKLAR" />
+  </EntityType>
+  <Association Name="FK_STOKLAR_ToTable_1">
+    <End Role="ALINANMALLAR" Type="Self.ALINANMALLAR" Multiplicity="0..1" />
+    <End Role="STOKLAR" Type="Self.STOKLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ALINANMALLAR">
+        <PropertyRef Name="Alinanmal_id" />
+      </Principal>
+      <Dependent Role="STOKLAR">
+        <PropertyRef Name="Alinanmal_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIPARISLER_ToTable_2">
+    <End Role="CALISANLAR" Type="Self.CALISANLAR" Multiplicity="0..1" />
+    <End Role="SIPARISLER" Type="Self.SIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CALISANLAR">
+        <PropertyRef Name="Calisan_id" />
+      </Principal>
+      <Dependent Role="SIPARISLER">
+        <PropertyRef Name="Calisan_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIPARISLER_ToTable_1">
+    <End Role="MASALAR" Type="Self.MASALAR" Multiplicity="0..1" />
+    <End Role="SIPARISLER" Type="Self.SIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MASALAR">
+        <PropertyRef Name="Masa_id" />
+      </Principal>
+      <Dependent Role="SIPARISLER">
+        <PropertyRef Name="Masa_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SIPARISLER_ToTable">
+    <End Role="URUNLER" Type="Self.URUNLER" Multiplicity="0..1" />
+    <End Role="SIPARISLER" Type="Self.SIPARISLER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="URUNLER">
+        <PropertyRef Name="Urün_id" />
+      </Principal>
+      <Dependent Role="SIPARISLER">
+        <PropertyRef Name="Urün_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_STOKLAR_ToTable">
+    <End Role="URUNLER" Type="Self.URUNLER" Multiplicity="0..1" />
+    <End Role="STOKLAR" Type="Self.STOKLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="URUNLER">
+        <PropertyRef Name="Urün_id" />
+      </Principal>
+      <Dependent Role="STOKLAR">
+        <PropertyRef Name="Urün_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PASTANEİSLETMECİLİĞİEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ALINANMALLAR" EntityType="Self.ALINANMALLAR" />
+    <EntitySet Name="CALISANLAR" EntityType="Self.CALISANLAR" />
+    <EntitySet Name="MASALAR" EntityType="Self.MASALAR" />
+    <EntitySet Name="SIPARISLER" EntityType="Self.SIPARISLER" />
+    <EntitySet Name="STOKLAR" EntityType="Self.STOKLAR" />
+    <EntitySet Name="URUNLER" EntityType="Self.URUNLER" />
+    <AssociationSet Name="FK_STOKLAR_ToTable_1" Association="Self.FK_STOKLAR_ToTable_1">
+      <End Role="ALINANMALLAR" EntitySet="ALINANMALLAR" />
+      <End Role="STOKLAR" EntitySet="STOKLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIPARISLER_ToTable_2" Association="Self.FK_SIPARISLER_ToTable_2">
+      <End Role="CALISANLAR" EntitySet="CALISANLAR" />
+      <End Role="SIPARISLER" EntitySet="SIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIPARISLER_ToTable_1" Association="Self.FK_SIPARISLER_ToTable_1">
+      <End Role="MASALAR" EntitySet="MASALAR" />
+      <End Role="SIPARISLER" EntitySet="SIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SIPARISLER_ToTable" Association="Self.FK_SIPARISLER_ToTable">
+      <End Role="URUNLER" EntitySet="URUNLER" />
+      <End Role="SIPARISLER" EntitySet="SIPARISLER" />
+    </AssociationSet>
+    <AssociationSet Name="FK_STOKLAR_ToTable" Association="Self.FK_STOKLAR_ToTable">
+      <End Role="URUNLER" EntitySet="URUNLER" />
+      <End Role="STOKLAR" EntitySet="STOKLAR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

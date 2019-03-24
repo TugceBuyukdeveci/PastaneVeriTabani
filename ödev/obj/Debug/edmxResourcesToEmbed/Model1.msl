@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PASTANEİSLETMECİLİĞİModelStoreContainer" CdmEntityContainer="PASTANEİSLETMECİLİĞİEntities3">
+    <EntitySetMapping Name="ALINANMALLAR">
+      <EntityTypeMapping TypeName="PASTANEİSLETMECİLİĞİModel.ALINANMALLAR">
+        <MappingFragment StoreEntitySet="ALINANMALLAR">
+          <ScalarProperty Name="Alinanmal_id" ColumnName="Alinanmal_id" />
+          <ScalarProperty Name="Alinanmal_Ad" ColumnName="Alinanmal_Ad" />
+          <ScalarProperty Name="Alinanmal_Mik" ColumnName="Alinanmal_Mik" />
+          <ScalarProperty Name="Alinanmal_Tarih" ColumnName="Alinanmal_Tarih" />
+          <ScalarProperty Name="Alinanmal_SKT" ColumnName="Alinanmal_SKT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CALISANLAR">
+      <EntityTypeMapping TypeName="PASTANEİSLETMECİLİĞİModel.CALISANLAR">
+        <MappingFragment StoreEntitySet="CALISANLAR">
+          <ScalarProperty Name="Calisan_id" ColumnName="Calisan_id" />
+          <ScalarProperty Name="Calisan_Ad" ColumnName="Calisan_Ad" />
+          <ScalarProperty Name="Calisan_Soyad" ColumnName="Calisan_Soyad" />
+          <ScalarProperty Name="Calisan_Cep_Tel" ColumnName="Calisan_Cep_Tel" />
+          <ScalarProperty Name="Calisan_Mail" ColumnName="Calisan_Mail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MASALAR">
+      <EntityTypeMapping TypeName="PASTANEİSLETMECİLİĞİModel.MASALAR">
+        <MappingFragment StoreEntitySet="MASALAR">
+          <ScalarProperty Name="Masa_id" ColumnName="Masa_id" />
+          <ScalarProperty Name="Masa_Ad" ColumnName="Masa_Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SIPARISLER">
+      <EntityTypeMapping TypeName="PASTANEİSLETMECİLİĞİModel.SIPARISLER">
+        <MappingFragment StoreEntitySet="SIPARISLER">
+          <ScalarProperty Name="Siparis_id" ColumnName="Siparis_id" />
+          <ScalarProperty Name="Siparis_ad" ColumnName="Siparis_ad" />
+          <ScalarProperty Name="Siparis_Tarih" ColumnName="Siparis_Tarih" />
+          <ScalarProperty Name="Urün_id" ColumnName="Urün_id" />
+          <ScalarProperty Name="Masa_id" ColumnName="Masa_id" />
+          <ScalarProperty Name="Calisan_id" ColumnName="Calisan_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STOKLAR">
+      <EntityTypeMapping TypeName="PASTANEİSLETMECİLİĞİModel.STOKLAR">
+        <MappingFragment StoreEntitySet="STOKLAR">
+          <ScalarProperty Name="Stok_id" ColumnName="Stok_id" />
+          <ScalarProperty Name="Urün_id" ColumnName="Urün_id" />
+          <ScalarProperty Name="Alinanmal_id" ColumnName="Alinanmal_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="URUNLER">
+      <EntityTypeMapping TypeName="PASTANEİSLETMECİLİĞİModel.URUNLER">
+        <MappingFragment StoreEntitySet="URUNLER">
+          <ScalarProperty Name="Urün_id" ColumnName="Urün_id" />
+          <ScalarProperty Name="Urun_Ad" ColumnName="Urun_Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
